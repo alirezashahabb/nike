@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:nike/theme.dart';
+
+const defaultTextStyle =
+    TextStyle(fontFamily: 'Vazir', color: LightThemeColors.primaryTextColor);
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +15,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    const defaultTextStyle = TextStyle(
+        fontFamily: 'Vazir', color: LightThemeColors.primaryTextColor);
     return MaterialApp(
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -37,8 +43,18 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+
         useMaterial3: true,
+        textTheme: TextTheme(
+            bodyMedium: defaultTextStyle,
+            displaySmall: defaultTextStyle.apply(
+                color: LightThemeColors.secondaryTextColor),
+            titleLarge: defaultTextStyle.copyWith(fontWeight: FontWeight.bold)),
+        colorScheme: const ColorScheme.light(
+          primary: LightThemeColors.primaryColor,
+          secondary: LightThemeColors.secondaryColor,
+          onSecondary: Colors.white,
+        ),
       ),
       home: const MyHomePage(),
     );
@@ -50,6 +66,12 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Center(
+        child: Text(
+          'سلام',
+        ),
+      ),
+    );
   }
 }
