@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:nike/data/repo/prodduct_repo.dart';
 import 'package:nike/theme.dart';
 
 const defaultTextStyle =
@@ -66,6 +67,11 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    repository.getSearch('کفش').then((value) {
+      debugPrint(value.toString());
+    }).catchError((e) {
+      debugPrint(e.toString());
+    });
     return const Scaffold(
       body: Center(
         child: Text(
