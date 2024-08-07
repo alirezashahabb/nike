@@ -11,11 +11,11 @@ final bannerRepo = BannerRepo(
   BannerRemoteDataSource(httpClient),
 );
 
-abstract class IBannerRep {
+abstract class IBannerRepository {
   Future<List<BannerModel>> getBanner();
 }
 
-class BannerRepo implements IBannerRep {
+class BannerRepo implements IBannerRepository {
   final IBannerDataSource _dataSource;
 
   BannerRepo(this._dataSource);
