@@ -7,7 +7,7 @@ Dio httpClient = Dio(BaseOptions(
   baseUrl: EndPoint.baseUrl,
 ));
 
-final repository = ProductRepository(ProductRemoteDataSource(httpClient));
+final productRepo = ProductRepository(ProductRemoteDataSource(httpClient));
 
 abstract class IProductRepository {
   Future<List<ProductModel>> getAll(int sort);
