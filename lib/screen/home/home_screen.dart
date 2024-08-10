@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nike/data/repo/banner_repo.dart';
 import 'package:nike/data/repo/prodduct_repo.dart';
 import 'package:nike/screen/home/bloc/home_bloc.dart';
+import 'package:nike/widget/loading_state.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,9 +21,7 @@ class HomeScreen extends StatelessWidget {
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const LoadingState();
             } else if (state is HomeSuccessState) {
               return ListView.builder(
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
@@ -45,6 +45,8 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Lottie.asset('assets/img/ErrorState.json',
+                        height: 100, width: 100),
                     Text(state.appException.message),
                     ElevatedButton(
                       onPressed: () {

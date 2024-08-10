@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     const defaultTextStyle = TextStyle(
         fontFamily: 'Vazir', color: LightThemeColors.primaryTextColor);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
