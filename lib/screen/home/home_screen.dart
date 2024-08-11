@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:nike/data/repo/banner_repo.dart';
 import 'package:nike/data/repo/prodduct_repo.dart';
 import 'package:nike/screen/home/bloc/home_bloc.dart';
+import 'package:nike/widget/horizantally_products.dart';
 import 'package:nike/widget/loading_state.dart';
 import 'package:nike/widget/slider_section.dart';
 
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme themeData = Theme.of(context).textTheme;
     return BlocProvider(
       create: (context) {
         final homeBloc = HomeBloc(bannerRepo, productRepo);
@@ -42,6 +44,44 @@ class HomeScreen extends StatelessWidget {
                     case 2:
                       return SliderSection(
                         banners: state.bannerList,
+                      );
+                    case 3:
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('جدید ترین',
+                                    style: themeData.headlineSmall),
+                                Text(' همه', style: themeData.bodyLarge),
+                              ],
+                            ),
+                          ),
+                          HorizontallyProducts(
+                            products: state.latestProduct,
+                          ),
+                        ],
+                      );
+                    case 4:
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('پر بازدید ترین',
+                                    style: themeData.headlineSmall),
+                                Text(' همه', style: themeData.bodyLarge),
+                              ],
+                            ),
+                          ),
+                          HorizontallyProducts(
+                            products: state.popularProduct,
+                          ),
+                        ],
                       );
                     default:
                       return Container();

@@ -32,7 +32,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         textTheme: TextTheme(
+            bodyLarge: defaultTextStyle.copyWith(
+                color: LightThemeColors.primaryColor,
+                fontWeight: FontWeight.w500),
+            headlineSmall: defaultTextStyle.copyWith(
+              color: LightThemeColors.secondaryTextColor,
+              fontSize: 18,
+            ),
             bodyMedium: defaultTextStyle,
+            bodySmall: defaultTextStyle.copyWith(
+              color: LightThemeColors.secondaryTextColor,
+              fontSize: 12,
+            ),
             displaySmall: defaultTextStyle.apply(
                 color: LightThemeColors.secondaryTextColor),
             titleLarge: defaultTextStyle.copyWith(fontWeight: FontWeight.bold)),
