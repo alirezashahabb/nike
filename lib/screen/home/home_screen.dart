@@ -5,6 +5,7 @@ import 'package:nike/data/repo/banner_repo.dart';
 import 'package:nike/data/repo/prodduct_repo.dart';
 import 'package:nike/screen/home/bloc/home_bloc.dart';
 import 'package:nike/widget/loading_state.dart';
+import 'package:nike/widget/slider_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,16 +25,24 @@ class HomeScreen extends StatelessWidget {
               return const LoadingState();
             } else if (state is HomeSuccessState) {
               return ListView.builder(
-                padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   switch (index) {
                     case 0:
-                      return Image.asset(
-                        'assets/img/nike.png',
-                        height: 46,
+                      return Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          'assets/img/nike.png',
+                          height: 46,
+                          fit: BoxFit.fitHeight,
+                        ),
                       );
 
+                    case 2:
+                      return SliderSection(
+                        banners: state.bannerList,
+                      );
                     default:
                       return Container();
                   }
