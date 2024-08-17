@@ -2,17 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nike/common/constant.dart';
 import 'package:nike/data/model/product.dart';
+import 'package:nike/screen/product/comment/comment_list.dart';
 import 'package:nike/theme.dart';
 import 'package:nike/widget/image_loading_service.dart';
 
 class ProductDetail extends StatelessWidget {
   final ProductModel products;
+
   const ProductDetail({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
     TextTheme themeData = Theme.of(context).textTheme;
+
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: FloatingActionButton.extended(
+          backgroundColor: LightThemeColors.secondaryColor,
+          onPressed: () {},
+          label: Text('افزودن به سبد خرید',
+              style: themeData.bodyMedium!.copyWith(color: Colors.white)),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -68,6 +81,21 @@ class ProductDetail extends StatelessWidget {
                   ' کتونی، کفشی است که برای لباس‌های ورزشی یا فعالیت‌های روزمره طراحی شده است. کفش‌های کتونی معمولاً یک زیره طبی و رویه با کیفیت دارند که روی پا را می‌پوشانند'),
             ),
           ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('نظرات کاربران', style: themeData.headlineSmall),
+                  Text('ثبت نظر', style: themeData.bodyLarge),
+                ],
+              ),
+            ),
+          ),
+          CommentList(
+            productModel: products,
+          )
         ],
       ),
     );

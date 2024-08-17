@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:nike/data/repo/banner_repo.dart';
 import 'package:nike/data/repo/prodduct_repo.dart';
 import 'package:nike/screen/home/bloc/home_bloc.dart';
+import 'package:nike/widget/error_state.dart';
 import 'package:nike/widget/horizantally_products.dart';
 import 'package:nike/widget/loading_state.dart';
 import 'package:nike/widget/slider_section.dart';
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme themeData = Theme.of(context).textTheme;
-    return BlocProvider(
+    return BlocProvider<HomeBloc>(
       create: (context) {
         final homeBloc = HomeBloc(bannerRepo, productRepo);
         homeBloc.add(HomeStartedEvent());
@@ -89,23 +89,11 @@ class HomeScreen extends StatelessWidget {
                 },
               );
             } else if (state is HomeErrorState) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Lottie.asset('assets/img/ErrorState.json',
-                        height: 100, width: 100),
-                    Text(state.appException.message),
-                    ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<HomeBloc>(context)
-                            .add(HomeRefreshEvent());
-                      },
-                      child: const Text('تلاش دوباره'),
-                    ),
-                  ],
-                ),
+              return ErrorState(
+                onTap: () {
+                  BlocProvider.of<HomeBloc>(context).add(HomeRefreshEvent());
+                },
+                exception: state.appException,
               );
             } else {
               throw ('state is not support');
