@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:nike/screen/home/home_screen.dart';
+import 'package:nike/screen/auth/auth_screen.dart';
 import 'package:nike/theme.dart';
 
 const defaultTextStyle =
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           onSecondary: Colors.white,
         ),
       ),
-      home: const HomeScreen(),
+      home: const AuthScreen(),
     );
   }
 }
